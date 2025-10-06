@@ -4,10 +4,10 @@
 #include <cstdlib>
 
 /*
- *Program......: Math Tutor V2
- *Programmers..: Christopher Thomas, Eamon O'Gorman
+ *Program......: Math Tutor V3
+ *Programmers..: Austin Hill, Eamon O'Gorman
  *Date.........: 2025.09.26
- *Github Repo..: https://github.com/ChThomas24/MathTutorV2
+ *Github Repo..: https://github.com/eaogo01/MathTutorV3
  *Description..:
 */
 using namespace std;
