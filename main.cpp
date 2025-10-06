@@ -12,12 +12,17 @@
 */
 using namespace std;
 int main() {
+    const int MAX_ATTEMPS = 3;
+    const int LEVEL_CHANGE = 5; // how much to increase the range up and down
+
+    enum MATHTYPE {MT_ADD = 1, MT_SUB = 2, MT_MUL = 3, MT_DIV = 4};
+
     string userName = "unknown";
     int userAnswer = 0;
     int leftNumber = 0;
     int rightNumber = 0;
     int temp = 0;
-    int mathType = 0;
+    MATHTYPE mathType = MT_ADD; // random number
     int correctAnswer = 0;
     char mathSymbol = '?';
 
@@ -55,15 +60,15 @@ int main() {
 
     leftNumber = rand() % 10 + 1;
     rightNumber = rand() % 10 + 1;
-    mathType = rand() % 4 + 1;
+    mathType = static_cast<MATHTYPE>(rand() % 4 + 1);
 
     switch (mathType) {
-        case 1: //Addition
+        case MT_ADD: //Addition
             mathSymbol = '+';
             correctAnswer = leftNumber + rightNumber;
             break;
 
-        case 2: // Subtraction
+        case MT_SUB: // Subtraction
             if (leftNumber < rightNumber) {
                 temp = leftNumber;
                 leftNumber = rightNumber;
@@ -73,12 +78,12 @@ int main() {
             mathSymbol = '-';
             break;
 
-        case 3: // Mulitplication
+        case MT_MUL: // Mulitplication
             correctAnswer = leftNumber * rightNumber;
             mathSymbol = '*';
             break;
 
-        case 4: // Division
+        case MT_DIV: // Division
             correctAnswer = leftNumber;
             leftNumber *= rightNumber;
             mathSymbol = '/';
