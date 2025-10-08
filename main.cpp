@@ -2,6 +2,7 @@
 #include <string>
 #include <ctime>
 #include <cstdlib>
+#include <limits>
 
 /*
  *Program......: Math Tutor V3
@@ -96,7 +97,13 @@ int main() {
     }
 
     cout << "What is " << leftNumber << " " << mathSymbol << "" << rightNumber << "? ";
-    cin >> userAnswer;
+    while (!(cin >> userAnswer)) {
+        cin.clear(); // clear the cin error flag
+        // need to include the limits library to use numeric limits
+        cin.ignore(numeric_limits<streamsize>::max(),'\n'); // ignore the max input, up to '\n'
+        cout << "\tInvalid input!" << endl;
+        cout<< "\tPlease enter a number: ";
+    } // end of get userAnswer while loop
 
     if (userAnswer == correctAnswer) {
         cout << "Congrats! It looks like you should play this game again." << endl;
