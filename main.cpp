@@ -86,7 +86,7 @@ int main() {
 
         case MT_DIV: // Division
             correctAnswer = leftNumber;
-            leftNumber *= rightNumber;
+            leftNumber = rightNumber;
             mathSymbol = '/';
             break;
 
