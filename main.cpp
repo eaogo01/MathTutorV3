@@ -12,18 +12,19 @@
  *Description..:
 */
 using namespace std;
+
 int main() {
     const int MAX_ATTEMPS = 3;
     const int LEVEL_CHANGE = 5; // how much to increase the range up and down
 
-    enum MATHTYPE {MT_ADD = 1, MT_SUB = 2, MT_MUL = 3, MT_DIV = 4};
-
+    enum MATHTYPE { MT_ADD = 1, MT_SUB = 2, MT_MUL = 3, MT_DIV = 4 };
+    MATHTYPE mathType = MT_ADD; // random number
     string userName = "unknown";
+    string userInput = "?";
     int userAnswer = 0;
     int leftNumber = 0;
     int rightNumber = 0;
     int temp = 0;
-    MATHTYPE mathType = MT_ADD; // random number
     int correctAnswer = 0;
     char mathSymbol = '?';
 
@@ -38,9 +39,12 @@ int main() {
                  |_|  |_|\__,_|\__|_| |_|   |_| \__,_|\__\___/|_|
 
 )" << endl;
-    cout << "********************************************************************************************************" << endl;
-    cout << "*                          Welcome to the Silly Simple Math Tutor                                      *" << endl;
-    cout << "********************************************************************************************************" << endl;
+    cout << "********************************************************************************************************"
+            << endl;
+    cout << "*                          Welcome to the Silly Simple Math Tutor                                      *"
+            << endl;
+    cout << "********************************************************************************************************"
+            << endl;
     cout << "Fun Math Facts " << endl;
     cout << endl;
     cout << "* Math teachers have problems. " << endl;
@@ -48,7 +52,8 @@ int main() {
     cout << "* If it seems easy, you're doing it wrong. " << endl;
     cout << "* It's all fun and games until someone divides by zero! " << endl;
     cout << endl;
-    cout << "*******************************************************************************************************" << endl;
+    cout << "*******************************************************************************************************" <<
+            endl;
 
     cout << endl;
     cout << "What is your name? ";
@@ -100,18 +105,34 @@ int main() {
     while (!(cin >> userAnswer)) {
         cin.clear(); // clear the cin error flag
         // need to include the limits library to use numeric limits
-        cin.ignore(numeric_limits<streamsize>::max(),'\n'); // ignore the max input, up to '\n'
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignore the max input, up to '\n'
         cout << "\tInvalid input!" << endl;
-        cout<< "\tPlease enter a number: ";
+        cout << "\tPlease enter a number: ";
     } // end of get userAnswer while loop
+    do {
+        // put all code that needs to repeat inside this
+    } while ("?" == "yes" || "?" == "y");
+    cout << endl;
+    getline(cin, userInput); // clearing the newline from the input buffer
 
+    // validates y, yes, n ,no
+    cout << "Do you want to continue (y-yes | n-no)? ";
+    getline(cin, userInput);
+    // to lower case the user's input
+    for (int i = 0; i < userInput.size(); i++) {
+    }
+    userInput.at.(i) = tolower(userInput.at.(i)); // include ctype library for tolower}
+
+    if ("?" == "y" || "?" == "yes" || "?" == "n" || "?" == "no") {
+       ;
+    }
     if (userAnswer == correctAnswer) {
         cout << "Congrats! It looks like you should play this game again." << endl;
     } else {
-    cout << "Looks like you should play this game again. " << endl;
-    cout << "The correct answer was " << correctAnswer << endl;
-}
+        cout << "Looks like you should play this game again. " << endl;
+        cout << "The correct answer was " << correctAnswer << endl;
+    }
     cout << "Thanks for playing," << userName << "! End of program." << endl;
 
-        return 0;
+    return 0;
 }
