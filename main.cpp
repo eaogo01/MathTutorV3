@@ -63,6 +63,7 @@ int main() {
     cout << userName;
     cout << " to the Silly Simple Math Tutor!";
     cout << endl;
+    cout << "What is " << leftNumber << " " << mathSymbol << "" << rightNumber << "? ";
 
     leftNumber = rand() % 10 + 1;
     rightNumber = rand() % 10 + 1;
@@ -73,6 +74,13 @@ int main() {
             mathSymbol = '+';
             correctAnswer = leftNumber + rightNumber;
             break;
+        while (!(cin >> userAnswer)) {
+            cin.clear(); // clear the cin error flag
+            // need to include the limits library to use numeric limits
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignore the max input, up to '\n'
+            cout << "\tInvalid input!" << endl;
+            cout << "\tPlease enter a number: ";
+        } // end of get userAnswer while loop
 
         case MT_SUB: // Subtraction
             if (leftNumber < rightNumber) {
@@ -100,15 +108,6 @@ int main() {
             cout << "Program ended with an error = -1" << endl;
             cout << "Please report this error to Christopher" << endl;
     }
-
-    cout << "What is " << leftNumber << " " << mathSymbol << "" << rightNumber << "? ";
-    while (!(cin >> userAnswer)) {
-        cin.clear(); // clear the cin error flag
-        // need to include the limits library to use numeric limits
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignore the max input, up to '\n'
-        cout << "\tInvalid input!" << endl;
-        cout << "\tPlease enter a number: ";
-    } // end of get userAnswer while loop
     do {
         // put all code that needs to repeat inside this
     } while ("?" == "yes" || "?" == "y");
@@ -124,8 +123,9 @@ int main() {
     userInput.at.(i) = tolower(userInput.at.(i)); // include ctype library for tolower}
 
     if ("?" == "y" || "?" == "yes" || "?" == "n" || "?" == "no") {
-       ;
+        ;
     }
+
     if (userAnswer == correctAnswer) {
         cout << "Congrats! It looks like you should play this game again." << endl;
     } else {
