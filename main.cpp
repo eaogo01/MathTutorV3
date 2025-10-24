@@ -19,13 +19,16 @@ int main() {
 
     enum MATHTYPE { MT_ADD = 1, MT_SUB = 2, MT_MUL = 3, MT_DIV = 4 };
     MATHTYPE mathType = MT_ADD; // random number
+
     string userName = "unknown";
     string userInput = "?";
+
     int userAnswer = 0;
     int leftNumber = 0;
     int rightNumber = 0;
     int temp = 0;
     int correctAnswer = 0;
+
     char mathSymbol = '?';
 
     srand(time(0));
@@ -68,71 +71,70 @@ int main() {
     leftNumber = rand() % 10 + 1;
     rightNumber = rand() % 10 + 1;
     mathType = static_cast<MATHTYPE>(rand() % 4 + 1);
+    do {
+        // put all code that needs to repeat inside this
 
-    switch (mathType) {
-        case MT_ADD: //Addition
-            mathSymbol = '+';
+        switch (mathType) {
+            case MT_ADD: //Addition
+                mathSymbol = '+';
             correctAnswer = leftNumber + rightNumber;
             break;
-        while (!(cin >> userAnswer)) {
-            cin.clear(); // clear the cin error flag
-            // need to include the limits library to use numeric limits
-            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // ignore the max input, up to '\n'
-            cout << "\tInvalid input!" << endl;
-            cout << "\tPlease enter a number: ";
-        } // end of get userAnswer while loop
 
-        case MT_SUB: // Subtraction
-            if (leftNumber < rightNumber) {
-                temp = leftNumber;
-                leftNumber = rightNumber;
-                rightNumber = temp;
-            }
+            case MT_SUB: // Subtraction
+                if (leftNumber < rightNumber) {
+                    temp = leftNumber;
+                    leftNumber = rightNumber;
+                    rightNumber = temp;
+                }
             correctAnswer = leftNumber - rightNumber;
             mathSymbol = '-';
             break;
 
-        case MT_MUL: // Mulitplication
-            correctAnswer = leftNumber * rightNumber;
+            case MT_MUL: // Mulitplication
+                correctAnswer = leftNumber * rightNumber;
             mathSymbol = '*';
             break;
 
-        case MT_DIV: // Division
-            correctAnswer = leftNumber;
+            case MT_DIV: // Division
+                correctAnswer = leftNumber;
             leftNumber = rightNumber;
             mathSymbol = '/';
             break;
 
-        default:
-            cout << "Invalid math type: " << mathType << endl;
+            default:
+                cout << "Invalid math type: " << mathType << endl;
             cout << "Program ended with an error = -1" << endl;
-            cout << "Please report this error to Christopher" << endl;
-    }
-    do {
-        // put all code that needs to repeat inside this
-    } while ("?" == "yes" || "?" == "y");
-    cout << endl;
-    getline(cin, userInput); // clearing the newline from the input buffer
+            cout << "Please report this error to Austin" << endl;
+        }
 
-    // validates y, yes, n ,no
-    cout << "Do you want to continue (y-yes | n-no)? ";
-    getline(cin, userInput);
-    // to lower case the user's input
-    for (int i = 0; i < userInput.size(); i++) {
-    }
-    userInput.at.(i) = tolower(userInput.at.(i)); // include ctype library for tolower}
+        cout << endl;
+        getline(cin, userInput); // clearing the newline from the input buffer
+        while (true) {
+            // validates y, yes, n ,no
+            getline(cin, userInput);
+            // to lower case the user's input
+        }
+        for (int i = 0; i < userInput.size(); i++) {
+            userInput.at.(i) = tolower(userInput.at.(i)); // include ctype library for tolower}
+        }
 
-    if ("?" == "y" || "?" == "yes" || "?" == "n" || "?" == "no") {
-        ;
-    }
+        if ("?" == "y" || "?" == "yes" ||
+            "?" == "n" || "?" == "no") {
+            break;
+            } else {
+                cout << "invalid input, please try again..." << endl;
+                cout << endl;
+            } // end of if (y, yes, n , no)
+    } //end of inner while loop to validated y, yes, n, no
+        while ("?" == "yes" || "?" == "y");
+            if (userAnswer == correctAnswer) {
+                cout << "Congrats! It looks like you should play this game again." << endl;
+            } else {
+                cout << "Do you want to continue (y-yes | n-no)? ";
+                cout << "Looks like you should play this game again. " << endl;
+                cout << "The correct answer was " << correctAnswer << endl;
+            }
+        cout << "Thanks for playing," << userName << "! End of program." << endl;
 
-    if (userAnswer == correctAnswer) {
-        cout << "Congrats! It looks like you should play this game again." << endl;
-    } else {
-        cout << "Looks like you should play this game again. " << endl;
-        cout << "The correct answer was " << correctAnswer << endl;
+        return 0;
     }
-    cout << "Thanks for playing," << userName << "! End of program." << endl;
-
-    return 0;
-}
