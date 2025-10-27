@@ -66,13 +66,13 @@ int main() {
     cout << userName;
     cout << " to the Silly Simple Math Tutor!";
     cout << endl;
-    cout << "What is " << leftNumber << " " << mathSymbol << "" << rightNumber << "? ";
 
-    leftNumber = rand() % 10 + 1;
-    rightNumber = rand() % 10 + 1;
-    mathType = static_cast<MATHTYPE>(rand() % 4 + 1);
     do {
         // put all code that needs to repeat inside this
+
+        leftNumber = rand() % 10 + 1;
+        rightNumber = rand() % 10 + 1;
+        mathType = static_cast<MATHTYPE>(rand() % 4 + 1);
 
         switch (mathType) {
             case MT_ADD: //Addition
@@ -107,8 +107,27 @@ int main() {
             cout << "Please report this error to Austin" << endl;
         }
 
+        cout << "What is " << leftNumber << " " << mathSymbol << "" << rightNumber << "? ";
+
+while (!(cin>> userAnswer)) {
+    cin.clear(); // clear the cin error flag
+    //need to include the limits libary to use numeric_limits
+    cin.ignore(numeric_limits<streamsize>::max(),'\n'); // ignore the max input, up to '\n'
+    cout << "\tinvalid input !" << endl;
+    cout << "tPlease enter a number: ";
+} // end of get userAnswer while loop
+
+        if (userAnswer == correctAnswer) {
+            cout << "Congrats! It looks like you should play this game again." << endl;
+            cout << "Do you want to continue (y-yes | n-no)? ";
+        } else {
+            cout << "Looks like you should play this game again. " << endl;
+            cout << "The correct answer was " << correctAnswer << endl;
+        }
+
         cout << endl;
         getline(cin, userInput); // clearing the newline from the input buffer
+
         while (true) {
             // validates y, yes, n ,no
             getline(cin, userInput);
@@ -118,24 +137,17 @@ int main() {
                 userInput.at(i) = tolower(userInput.at(i)); // include ctype library for tolower}
             }
 
-            if ("?" == "y" || "?" == "yes" ||
-                "?" == "n" || "?" == "no") {
+            if (userInput == "y" || userInput == "yes" ||
+                userInput == "n" || userInput == "no") {
                 break;
-                } else {
+            } else {
                     cout << "invalid input, please try again..." << endl;
                     cout << endl;
                 } // end of if (y, yes, n , no)
 
         } //end of inner while loop to validated y, yes, n, no
-        while ("?" == "yes" || "?" == "y")
-    if (userAnswer == correctAnswer) {
-        cout << "Congrats! It looks like you should play this game again." << endl;
-        cout << "Do you want to continue (y-yes | n-no)? ";
-    } else {
-        cout << "Looks like you should play this game again. " << endl;
-        cout << "The correct answer was " << correctAnswer << endl;
-    }
-    cout << "Thanks for playing," << userName << "! End of program." << endl;
+        cout << "Thanks for playing," << userName << "! End of program." << endl;
 
-    return 0;
+        return 0;
+    }while (userInput == "yes" || userInput == "y");
 }
