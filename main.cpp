@@ -97,7 +97,8 @@ int main() {
 
             case MT_DIV: // Division
                 correctAnswer = leftNumber;
-            leftNumber = rightNumber;
+            rightNumber = leftNumber;
+            leftNumber = rightNumber * correctAnswer;
             mathSymbol = '/';
             break;
 
@@ -107,7 +108,7 @@ int main() {
             cout << "Please report this error to Austin" << endl;
         }
 
-        cout << "What is " << leftNumber << " " << mathSymbol << "" << rightNumber << "? ";
+        cout << "What is " << leftNumber << " " << mathSymbol << " " << rightNumber << " = ? ";
 
 while (!(cin>> userAnswer)) {
     cin.clear(); // clear the cin error flag
@@ -146,8 +147,8 @@ while (!(cin>> userAnswer)) {
                 } // end of if (y, yes, n , no)
 
         } //end of inner while loop to validated y, yes, n, no
-        cout << "Thanks for playing," << userName << "! End of program." << endl;
 
-        return 0;
     }while (userInput == "yes" || userInput == "y");
+    cout << "Thanks for playing," << userName << "! End of program." << endl;
+    return 0;
 }
